@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 
-"""Script will unlock list of lists"""
+"""
+
+    This module contains the canUnlockAll function.
+
+"""
 
 
 
@@ -8,26 +12,32 @@
 
 def canUnlockAll(boxes):
 
-    """This function will take a list of lists and the content
+    """Method that determines if all the boxes can be opened
 
-       of a list will unlock other lists
+        Arg:
+
+            boxes: Is a list of lists.
 
     """
 
+    box = len(boxes) * [False]
 
+    box[0] = True
 
     keys = [0]
 
-    for key in keys:
 
-        for boxKey in boxes[key]:
 
-            if boxKey not in keys and boxKey < len(boxes):
+    for each in keys:
 
-                keys.append(boxKey)
+        for i in boxes[each]:
 
-    if len(keys) == len(boxes):
+            if i not in keys:
 
-        return True
+                if i < len(boxes):
 
-    return False
+                    box[i] = True
+
+                    keys.append(i)
+
+    return all(box)
